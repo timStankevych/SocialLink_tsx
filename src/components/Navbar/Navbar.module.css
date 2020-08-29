@@ -1,0 +1,17 @@
+.nav {
+  grid-area: n;
+  background-color: burlywood;
+  display: block;
+  padding: 10px;
+}
+.item a {
+  color: white;
+  font-weight: 500;
+  font-size: 34px;
+}
+a {
+  text-decoration: none;
+}
+.item a.active{
+  color: blue;
+}
