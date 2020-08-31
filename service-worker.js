@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/SocialLink_tsx/precache-manifest.9419b94265b323079598b52ce0265a06.js"
+  "/SocialLink_tsx/precache-manifest.780e37adb9ba3d5d4ef42801c21f0222.js"
 );
 
 self.addEventListener('message', (event) => {
