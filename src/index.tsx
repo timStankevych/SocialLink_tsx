@@ -1,16 +1,16 @@
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {BrowserRouter} from 'react-router-dom';
+import {HashRouter} from 'react-router-dom';
 import React from 'react';
 import store from './redux/state';
 
 
 let rerenderEntireTree = () => {
     ReactDOM.render(
-        <BrowserRouter>
+        <HashRouter>
             <App store={store} />
-        </BrowserRouter>, document.getElementById('root'));
+        </HashRouter>, document.getElementById('root'));
 };
 
 rerenderEntireTree();
