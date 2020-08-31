@@ -5,14 +5,10 @@ import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
 import Dialogs from './components/Dialogs/Dialogs';
 import {Route} from 'react-router-dom'
-import {addMessage, addPost, RootStateType} from './redux/state';
+import store, {ActionTypes, StoreType} from './redux/state';
 
 type PropsType = {
-    state: RootStateType
-    addPost: (postMessage: string) => void
-    addMessage: (postMessage: string) => void
-    updateNewPostsText: (newText: string) => void
-    updateNewMessageText: (newMessage: string) => void
+    store: StoreType
 }
 
 const App: React.FC<PropsType> = (props) => {
@@ -23,13 +19,11 @@ const App: React.FC<PropsType> = (props) => {
             <Navbar/>
             <div className="app-wrapper-content">
                 <Route path={'/profile'} render={() => <Profile
-                    profilePage={props.state.profilePage}
-                    addPost={addPost}
-                    updateNewPostsText={props.updateNewPostsText}/>}/>
+                    profilePage={props.store._state.profilePage}
+                    dispatch={props.store.dispatch.bind(store)}/>}/>
                 <Route path={'/dialogs'} render={() => <Dialogs
-                    dialogsPage={props.state.dialogsPage}
-                    addMessage={addMessage}
-                    updateNewMessageText={props.updateNewMessageText}/>}/>
+                    dialogsPage={props.store._state.dialogsPage}
+                    dispatch={props.store.dispatch.bind(store)}/>}/>
             </div>
         </div>
     )

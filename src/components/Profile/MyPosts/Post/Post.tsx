@@ -4,6 +4,7 @@ import cl from './Post.module.css'
 type PropsType = {
     message: string
     likesCount: number
+    id: number
 }
 
 const Post: React.FC<PropsType> = (props) => {
@@ -13,6 +14,7 @@ const Post: React.FC<PropsType> = (props) => {
       {props.message}
       <div>
         <span>like {props.likesCount}</span>
+        <span>-   time {props.id}</span>
       </div>
     </div>
   )
