@@ -1,4 +1,7 @@
-import {type} from 'os';
+import profileReducer from './profileReducer';
+import dialogsReducer from './dialogsReducer';
+import sidebarReducer from './sidebarReducer';
+
 
 export type MessageType = {
   id: number
@@ -84,32 +87,10 @@ let store: StoreType = {
     this._rerenderEntireTree = observer
   },
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
-      let newPost: PostType = {
-        id: new Date().getTime(),
-        message: action.newPostsText,
-        likesCount: 0,
-      };
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newPostsText = '';
-      this._rerenderEntireTree();
-    }
-    else if (action.type === 'ADD-MESSAGE'){
-      let newMessage: MessageType = {
-        id: 5,
-        message: action.newMessageText,
-      }
-
-      this._state.dialogsPage.messages.push(newMessage);
-      this._state.dialogsPage.newMessageText = '';
-      this._rerenderEntireTree();
-    } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
-      this._state.profilePage.newPostsText = action.newText;
-      this._rerenderEntireTree();
-    } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT'){
-      this._state.dialogsPage.newMessageText = action.newMessage;
-      this._rerenderEntireTree();
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+    this._rerenderEntireTree();
   },
 }
 
