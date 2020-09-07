@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
-import {RootStateType} from './redux/state';
+import {RootStateType} from './redux/store';
 
 type PropsType = {
   state: RootStateType

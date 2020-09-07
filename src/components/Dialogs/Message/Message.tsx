@@ -1,6 +1,6 @@
 import React from 'react';
 import cl from '../Dialogs.module.css'
-import {MessageType} from '../../../redux/state';
+import {MessageType} from '../../../redux/store';
 
 type PropsType = {
   message: string
