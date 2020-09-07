@@ -2,7 +2,8 @@ import React from 'react';
 import cl from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {ActionTypes, addMessageAC, DialogPageType, updateNewMessageTextAC} from '../../redux/state';
+import {ActionTypes, DialogPageType} from '../../redux/state';
+import {addMessageAC, updateNewMessageTextAC} from '../../redux/dialogsReducer';
 
 type PropsType = {
     dialogsPage: DialogPageType
@@ -28,6 +29,7 @@ const Dialogs: React.FC<PropsType> = (props) => {
         }
         ;
     }
+    const greet = () => 'hello world';
 
     let onMessageChange = () => {
         let newMessage = newMessageElement.current ? newMessageElement.current.value : '';

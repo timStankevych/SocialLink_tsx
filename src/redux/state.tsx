@@ -1,5 +1,5 @@
-import profileReducer from './profileReducer';
-import dialogsReducer from './dialogsReducer';
+import profileReducer, {addPostAC, updateNewPostTextAC} from './profileReducer';
+import dialogsReducer, {addMessageAC, updateNewMessageTextAC} from './dialogsReducer';
 import sidebarReducer from './sidebarReducer';
 
 
@@ -68,10 +68,6 @@ let store: StoreType = {
       messages: [
         { id: 1, message: "Tim привет, а вот и мы" },
         { id: 2, message: "Mary привет, а вот и мы" },
-        { id: 3, message: "Fima привет, а вот и мы" },
-        { id: 4, message: "Yan привет, а вот и мы" },
-        { id: 5, message: "Vovan привет, а вот и мы" },
-        { id: 6, message: "Dimych привет, а вот и мы" },
       ],
       newMessageText: '',
     },
@@ -93,29 +89,5 @@ let store: StoreType = {
     this._rerenderEntireTree();
   },
 }
-
-export const addPostAC = (newPostText: string) => {
-  return {
-    type: 'ADD-POST', newPostsText: newPostText
-  } as const
-};
-
-export const addMessageAC = (newMessageText: string) => {
-  return {
-    type: 'ADD-MESSAGE', newMessageText: newMessageText
-  } as const
-};
-
-export const updateNewPostTextAC = (newText: string) => {
-  return {
-    type: 'UPDATE-NEW-POST-TEXT', newText: newText
-  } as const
-};
-
-export const updateNewMessageTextAC = (newMessage: string) => {
-  return {
-    type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: newMessage
-  } as const
-};
 
 export default store;
