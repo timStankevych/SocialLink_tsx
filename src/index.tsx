@@ -4,12 +4,15 @@ import App from './App';
 import {HashRouter} from 'react-router-dom';
 import React from 'react';
 import store from './redux/redux-store';
+import  {Provider} from './StoreContext';
 
 
 let rerenderEntireTree = () => {
     ReactDOM.render(
         <HashRouter>
-            <App store={store} />
+            <Provider store={store}>
+            <App />
+            </Provider>
         </HashRouter>, document.getElementById('root'));
 };
 

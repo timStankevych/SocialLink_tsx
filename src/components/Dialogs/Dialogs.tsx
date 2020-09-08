@@ -46,8 +46,9 @@ const Dialogs: React.FC<PropsType> = (props) => {
                 <textarea onChange={onMessageChange}
                           ref={newMessageElement}
                           value={newMessage}
-                          placeholder={'Your message'}
-                ></textarea> <br/>
+                          placeholder={'Your message'}>
+                </textarea>
+                <br/>
                 <button onClick={addMessage}>Send</button>
             </div>
         </div>
