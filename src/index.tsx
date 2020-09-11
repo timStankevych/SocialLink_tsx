@@ -4,7 +4,7 @@ import App from './App';
 import {HashRouter} from 'react-router-dom';
 import React from 'react';
 import store from './redux/redux-store';
-import  {Provider} from './StoreContext';
+import {Provider} from 'react-redux';
 
 
 let rerenderEntireTree = () => {
