@@ -1,51 +1,53 @@
-import profileReducer, {addPostAC, updateNewPostTextAC} from './profileReducer';
-import dialogsReducer, {addMessageAC, updateNewMessageTextAC} from './dialogsReducer';
-import sidebarReducer from './sidebarReducer';
+import {ProfilePageActionTypes,} from './profileReducer';
+import {DialogPageActionTypes} from './dialogsReducer';
+import {UsersPageActionTypes, usersPageType} from './usersReducer';
 
 
 export type MessageType = {
-  id: number
-  message: string
+    id: number
+    message: string
 };
 export type NewPostsTextType = string;
 export type DialogType = {
-  id: number
-  name: string
+    id: number
+    name: string
 };
 export type PostType = {
-  id: number
-  message: string
-  likesCount: number
+    id: number
+    message: string
+    likesCount: number
 };
 export type ProfilePageType = {
-  posts: Array<PostType>
-  newPostsText: NewPostsTextType
+    posts: Array<PostType>
+    newPostsText: NewPostsTextType
 };
 export type DialogPageType = {
-  dialogs: Array<DialogType>
-  messages: Array<MessageType>
-  newMessageText: string
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+    newMessageText: string
 };
 export type SidebarType = {};
 export type RootStateType = {
-  profilePage: ProfilePageType
-  dialogsPage: DialogPageType
-  sidebar: SidebarType
+    profilePage: ProfilePageType
+    dialogsPage: DialogPageType
+    sidebar: SidebarType
+    usersPage: usersPageType
 };
+
+export type DispatchType = (action: ActionTypes) => void
+
 
 export type StoreType = {
-  _state: RootStateType
-  getState: () => RootStateType
-  _rerenderEntireTree: () => void
-  subscribe: (observer: () => void) => void
-  dispatch: (action: ActionTypes) => void
+    _state: RootStateType
+    getState: () => RootStateType
+    _rerenderEntireTree: () => void
+    subscribe: (observer: () => void) => void
+    dispatch: DispatchType
 };
 
-export type ActionTypes = ReturnType<typeof addPostAC>
-  | ReturnType<typeof addMessageAC>
-  | ReturnType<typeof updateNewPostTextAC>
-  | ReturnType<typeof updateNewMessageTextAC>
-;
+export type ActionTypes = ProfilePageActionTypes
+    | DialogPageActionTypes
+    | UsersPageActionTypes
 
 // let store: StoreType = {
 //   _state: {
