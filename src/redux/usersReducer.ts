@@ -1,4 +1,4 @@
-import {ActionTypes} from './store';
+import {ActionTypes} from './redux-store';
 
 export type UsersPageActionTypes = ReturnType<typeof followAC>
 | ReturnType<typeof unFollowAC>

@@ -1,4 +1,4 @@
-import {ActionTypes, DialogPageType} from './store';
+import {ActionTypes, DialogPageType} from './redux-store';
 
 export type DialogPageActionTypes = ReturnType<typeof addMessageAC>
     | ReturnType<typeof updateNewMessageTextAC>

@@ -1,4 +1,4 @@
-import {ActionTypes, PostType, ProfilePageType} from './store';
+import {ActionTypes, PostType, ProfilePageType} from './redux-store';
 
 export type ProfilePageActionTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>

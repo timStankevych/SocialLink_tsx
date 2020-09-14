@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from './MyPosts.module.css'
 import Post from './Post/Post';
-import {NewPostsTextType, PostType} from '../../../redux/store';
+import {NewPostsTextType, PostType} from '../../../redux/redux-store';
 
 type PropsType = {
     updateNewPostText: (newText: string) => void
