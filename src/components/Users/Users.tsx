@@ -1,54 +1,30 @@
 import React from 'react';
 import cl from './Users.module.css';
-import {UsersType} from '../../redux/usersReducer';
 import * as axios from 'axios';
-import {debuglog} from 'util';
+import {UsersType} from '../../redux/usersReducer';
 
 type PropsType = {
-    users: UsersType[]
-    follow: (id: number) => void
-    unFollow: (id: number) => void
+    users: Array<UsersType>
     setUsers: (users: Array<UsersType>) => void
+    follow: (userId: number) => void
+    unFollow: (userId: number) => void
 }
 
-let Users = (props: PropsType) => {
+class Users extends React.Component<PropsType> {
 
-    if (props.users.length === 0) {
+    componentDidMount() {
 
         axios.default.get('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => {
-                    props.setUsers(response.data.items);
+                    this.props.setUsers(response.data.items);
                 }
             );
-
-        // props.setUsers([
-        //     {
-        //         id: 1,
-        //         followed: true,
-        //         fullName: 'Tymofii',
-        //         status: 'hi bro',
-        //         location: {city: 'Bratske', country: 'Ukraine'}
-        //     },
-        //     {
-        //         id: 2,
-        //         followed: false,
-        //         fullName: 'Fima',
-        //         status: 'hi bro',
-        //         location: {city: 'Bratske', country: 'Ukraine'}
-        //     },
-        //     {
-        //         id: 3,
-        //         followed: true,
-        //         fullName: 'Mary',
-        //         status: 'hi bro',
-        //         location: {city: 'Bratske', country: 'Ukraine'}
-        //     },
-        // ]);
     }
 
-    return (<div>
-        {
-            props.users.map(u => <div key={u.id}>
+    render(): React.ReactNode {
+        return (<div>
+            {
+                this.props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
                         <img className={cl.ava}
@@ -58,14 +34,14 @@ let Users = (props: PropsType) => {
                     <div>
                         {u.followed ?
                             <button onClick={() => {
-                                props.follow(u.id);
+                                this.props.follow(u.id);
                             }}>FOLLOW</button>
                             : <button onClick={() => {
-                                props.unFollow(u.id);
+                                this.props.unFollow(u.id);
                             }}>UNFOLLOW</button>}
                     </div>
                 </span>
-                <span>
+                    <span>
                     <span>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
@@ -75,10 +51,10 @@ let Users = (props: PropsType) => {
                         <div>{'u.location.city'}</div>
                     </span>
                 </span>
-            </div>)
-        }
-    </div>);
-};
-
+                </div>)
+            }
+        </div>);
+    }
+}
 
 export default Users;
