@@ -2,3 +2,13 @@
     width: 100px;
     border-radius: 20%;
 }
+.selectedPage{
+    font-weight: bold;
+}
+.numbers{
+    margin: 10px;
+    font-size: 20px;
+}
+.numbers span{
+    margin-left: 5px;
+}
