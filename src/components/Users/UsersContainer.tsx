@@ -1,11 +1,11 @@
 import React from 'react';
-import {DispatchType, RootStateType} from '../../redux/redux-store';
+import {RootStateType} from '../../redux/redux-store';
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC, toggleIsFetchingAC,
-    unFollowAC,
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers, toggleIsFetching,
+    unFollow,
     UsersType
 } from '../../redux/usersReducer';
 import {connect} from 'react-redux';
@@ -84,27 +84,28 @@ let mapStateToProps = (state: RootStateType) => {
     };
 };
 
-let mapDispatchToProps = (dispatch: DispatchType) => {
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId));
-        },
-        unFollow: (userId: number) => {
-            dispatch(unFollowAC(userId));
-        },
-        setUsers: (users: Array<UsersType>) => {
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (pageNumber: number) => {
-            dispatch(setCurrentPageAC(pageNumber));
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(setTotalUsersCountAC(totalCount));
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetchingAC(isFetching));
-        },
-    };
-};
+// let mapDispatchToProps = (dispatch: DispatchType) => {
+//     return {
+//         follow: (userId: number) => {
+//             dispatch(follow(userId));
+//         },
+//         unFollow: (userId: number) => {
+//             dispatch(unFollow(userId));
+//         },
+//         setUsers: (users: Array<UsersType>) => {
+//             dispatch(setUsers(users));
+//         },
+//         setCurrentPage: (pageNumber: number) => {
+//             dispatch(setCurrentPage(pageNumber));
+//         },
+//         setTotalUsersCount: (totalCount: number) => {
+//             dispatch(setTotalUsersCount(totalCount));
+//         },
+//         toggleIsFetching: (isFetching: boolean) => {
+//             dispatch(toggleIsFetching(isFetching));
+//         },
+//     };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersComponent);
+export default connect(mapStateToProps, {follow, unFollow, setUsers,
+    setCurrentPage, setTotalUsersCount, toggleIsFetching})(UsersComponent);
