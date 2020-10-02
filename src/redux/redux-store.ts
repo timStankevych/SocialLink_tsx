@@ -18,9 +18,32 @@ export type PostType = {
     message: string
     likesCount: number
 };
+type ProfileContactsType = {
+    facebook: string | null
+    website: string | null
+    vk: string | null
+    twitter: string | null
+    instagram: string | null
+    youtube: string | null
+    github: string | null
+    mainLink: string | null
+}
+export type ProfileType = {
+    aboutMe: string
+    contacts: ProfileContactsType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small: string
+        large: string
+    }
+}
 export type ProfilePageType = {
     posts: Array<PostType>
     newPostsText: NewPostsTextType
+    profile: ProfileType
 };
 export type DialogPageType = {
     dialogs: Array<DialogType>

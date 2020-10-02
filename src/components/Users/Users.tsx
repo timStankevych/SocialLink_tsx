@@ -2,6 +2,7 @@ import React from 'react';
 import cl from './Users.module.css';
 import * as axios from 'axios';
 import {UsersType} from '../../redux/usersReducer';
+import {NavLink} from 'react-router-dom';
 
 type PropsType = {
     users: Array<UsersType>
@@ -47,10 +48,12 @@ let Users = (props: PropsType) => {
             props.users.map(u => u.photos.small === null ? <div key={u.id}>
                 <span>
                     <div>
+                        <NavLink to={'/profile/' + u.id}>
                         <img className={cl.ava}
                              src={u.photos.large != null ? u.photos.large
                                  : 'https://pm1.narvii.com/6889/74979d4d2744ec6e27995b6e866f091d04c0b40cr1-515-414v2_hq.jpg'}
                              alt="avatar"/>
+                             </NavLink>
                     </div>
                     <div>
                         {u.followed ?
