@@ -3,6 +3,7 @@ import profileReducer, {ProfilePageActionTypes} from './profileReducer';
 import dialogsReducer, {DialogPageActionTypes} from './dialogsReducer';
 import sidebarReducer from './sidebarReducer';
 import usersReducer, {UsersPageActionTypes, usersPageType} from './usersReducer';
+import authReducer, {AuthReducerActionType, AuthType} from './authReducer';
 
 export type MessageType = {
     id: number
@@ -56,6 +57,7 @@ export type RootStateType = {
     dialogsPage: DialogPageType
     sidebar: SidebarType
     usersPage: usersPageType
+    auth: AuthType
 };
 
 export type DispatchType = (action: ActionTypes) => void
@@ -72,12 +74,14 @@ export type StoreType = {
 export type ActionTypes = ProfilePageActionTypes
     | DialogPageActionTypes
     | UsersPageActionTypes
+    | AuthReducerActionType
 
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer,
+    auth: authReducer,
 });
 
 let store: Store = createStore(reducers);
