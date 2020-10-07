@@ -6,7 +6,7 @@ type PropsType = {
 
 let Preloader = (props: PropsType) => {
     return (
-    <div style={{backgroundColor: 'red'}}>
+    <div style={{backgroundColor: 'white', border: '1px solid grey'}}>
         <img src={preloader}/>
     </div>
     )}
