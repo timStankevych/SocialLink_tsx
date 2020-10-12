@@ -61,39 +61,9 @@ let Users = (props: PropsType) => {
                     <div>
                         {u.followed ?
                             <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                    onClick={() => {
-                                        props.toggleFollowingInProgress(true, u.id);
-                                        axios.delete(
-                                            `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                                withCredentials: true,
-                                                headers: {
-                                                    'API-KEY': '56d303f7-4b20-4c05-aca0-a27b6fa68891'
-                                                },
-                                            })
-                                            .then(response => {
-                                                if (response.data.resultCode === 0) {
-                                                    props.unFollow(u.id);
-                                                }
-                                                props.toggleFollowingInProgress(false, u.id);
-                                            });
-                                    }}>UNFOLLOW</button>
+                                    onClick={() => {props.unFollow(u.id)}}>UNFOLLOW</button>
                             : <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                      onClick={() => {
-                                          props.toggleFollowingInProgress(true, u.id);
-                                          axios.post(
-                                              `https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                                  withCredentials: true,
-                                                  headers: {
-                                                      'API-KEY': '56d303f7-4b20-4c05-aca0-a27b6fa68891'
-                                                  },
-                                              })
-                                              .then(response => {
-                                                  if (response.data.resultCode === 0) {
-                                                      props.follow(u.id);
-                                                  }
-                                                  props.toggleFollowingInProgress(false, u.id);
-                                              });
-                                      }}>FOLLOW</button>}
+                                      onClick={() => {props.follow(u.id)}}>FOLLOW</button>}
                             </div>
                             </span>
                 <span>

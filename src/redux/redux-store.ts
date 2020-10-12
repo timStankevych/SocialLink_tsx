@@ -1,9 +1,10 @@
-import {combineReducers, createStore, Store} from 'redux';
+import {applyMiddleware, combineReducers, createStore, Store} from 'redux';
 import profileReducer, {ProfilePageActionTypes} from './profileReducer';
 import dialogsReducer, {DialogPageActionTypes} from './dialogsReducer';
 import sidebarReducer from './sidebarReducer';
 import usersReducer, {UsersPageActionTypes, usersPageType} from './usersReducer';
 import authReducer, {AuthReducerActionType, AuthType} from './authReducer';
+import thunkMiddleware from 'redux-thunk'
 
 export type MessageType = {
     id: number
@@ -84,7 +85,7 @@ let reducers = combineReducers({
     auth: authReducer,
 });
 
-let store: Store = createStore(reducers);
+let store: Store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 
 export default store;
