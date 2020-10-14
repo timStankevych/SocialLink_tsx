@@ -1,4 +1,5 @@
 import {ActionTypes} from './redux-store';
+import {authAPI} from '../api/api';
 
 export type AuthReducerActionType = ReturnType<typeof setAuthUserData>
 export type AuthType = {
@@ -36,4 +37,15 @@ export const setAuthUserData = (id: number, login: string, email: string) => {
         type: SRT_USER_DATA, data: {id, login, email}
     } as const;
 };
+
+export const getAuthUserData = () => (dispatch: any) => {
+    authAPI.me()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                let {id, login, email} = response.data.data;
+                dispatch(setAuthUserData(id, login, email));
+            }
+        });
+}
+
 export default authReducer;

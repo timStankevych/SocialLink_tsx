@@ -1,4 +1,3 @@
-import {ActionTypes} from './redux-store';
 import {usersAPI} from '../api/api';
 
 
@@ -58,7 +57,7 @@ let initialState = {
     followingInProgress: [],
 };
 
-const usersReducer = (state: usersPageType = initialState, action: ActionTypes) => {
+const usersReducer = (state: usersPageType = initialState, action: UsersPageActionTypes) => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -81,14 +80,12 @@ const usersReducer = (state: usersPageType = initialState, action: ActionTypes) 
                 })
             };
         case SET_USERS:
-            debugger
             return {...state, users: action.users};
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.currentPage};
         case SET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount: action.totalCount};
         case TOGGLE_IS_FETCHING:
-            debugger
             return {...state, isFetching: action.isFetching};
         case TOGGLE_IS_FOLLOWING_PROGRESS:
             return {

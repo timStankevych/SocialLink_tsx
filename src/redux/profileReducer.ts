@@ -1,4 +1,5 @@
-import {ActionTypes, PostType, ProfileType} from './redux-store';
+import {PostType, ProfileType} from './redux-store';
+import {usersAPI} from '../api/api';
 
 export type ProfilePageActionTypes = ReturnType<typeof addPost>
     | ReturnType<typeof updateNewPostText>
@@ -19,35 +20,42 @@ let initialState = {
     profile: null,
 };
 
-const profileReducer = (state = initialState , action: ActionTypes) => {
-    switch (action.type) {
-        case ADD_POST:
-            let newPost: PostType = {
-                id: new Date().getTime(),
-                message: action.newPostText,
-                likesCount: 0,
-            };
-            return {...state, posts: [...state.posts, newPost], newPostsText: ''};
-        case UPDATE_NEW_POST_TEXT:
-            return {...state, newPostsText: action.newText};
-        case SET_USER_PROFILE:
-            return {...state, profile: action.profile}
-        default:
-            return state;
+const profileReducer = (state = initialState, action: ProfilePageActionTypes) => {
+        switch (action.type) {
+            case ADD_POST:
+                let newPost: PostType = {
+                    id: new Date().getTime(),
+                    message: action.newPostText,
+                    likesCount: 0,
+                };
+                return {...state, posts: [...state.posts, newPost], newPostsText: ''};
+            case UPDATE_NEW_POST_TEXT:
+                return {...state, newPostsText: action.newText};
+            case SET_USER_PROFILE:
+                return {...state, profile: action.profile};
+            default:
+                return state;
         }
     }
-    ;
+;
 
-    export const addPost = (newPostText: string) => {
-        return {type: 'ADD_POST', newPostText} as const;
-    };
+export const addPost = (newPostText: string) => {
+    return {type: 'ADD_POST', newPostText} as const;
+};
 
-    export const updateNewPostText = (newText: string) => {
-        return {type: 'UPDATE_NEW_POST_TEXT', newText} as const;
-    };
+export const updateNewPostText = (newText: string) => {
+    return {type: 'UPDATE_NEW_POST_TEXT', newText} as const;
+};
 
-    export const setUserProfile = (profile: ProfileType) => {
-        return{type: 'SET_USER_PROFILE', profile} as const;
-    }
+export const setUserProfile = (profile: ProfileType) => {
+    return {type: 'SET_USER_PROFILE', profile} as const;
+};
 
-    export default profileReducer;
+export const getUserProfile = (userId: any) => (dispatch: any) => {
+    usersAPI.getProfile(userId).then(response => {
+            dispatch(setUserProfile(response.data));
+        }
+    );
+};
+
+export default profileReducer;
