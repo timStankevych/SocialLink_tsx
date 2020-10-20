@@ -1,14 +1,14 @@
 import React from 'react';
 import {RootStateType} from '../../redux/redux-store';
 import {
-    followSuccess,
-    setCurrentPage,
-    unFollowSuccess, toggleFollowingInProgress,
+    setCurrentPage, toggleFollowingInProgress,
     UsersType, getUsers, setUsers, unFollow, follow
 } from '../../redux/usersReducer';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import { connect } from 'react-redux';
+import {compose} from 'redux';
+import {withAuthRedirect} from '../../hoc/withAuthRedirect';
 
 type PropsType = {
     users: Array<UsersType>
@@ -25,7 +25,7 @@ type PropsType = {
     setUsers: (users: Array<UsersType>) => void
 }
 
-class UsersComponent extends React.Component<PropsType> {
+class UsersContainer extends React.Component<PropsType> {
 
     componentDidMount() {
 
@@ -73,6 +73,7 @@ let mapStateToProps = (state: RootStateType) => {
     };
 };
 
-export default connect(mapStateToProps, {
-    setCurrentPage, toggleFollowingInProgress, getUsers,
-    follow, unFollow, setUsers})(UsersComponent);
+export default compose(
+    connect(mapStateToProps, {setCurrentPage, toggleFollowingInProgress,
+        getUsers, follow, unFollow, setUsers})
+)(UsersContainer)
