@@ -4,13 +4,13 @@ import dialogsReducer, {DialogPageActionTypes} from './dialogsReducer';
 import sidebarReducer from './sidebarReducer';
 import usersReducer, {UsersPageActionTypes, usersPageType} from './usersReducer';
 import authReducer, {AuthReducerActionType, AuthType} from './authReducer';
-import thunkMiddleware from 'redux-thunk'
+import thunkMiddleware from 'redux-thunk';
+import { reducer as formReducer } from 'redux-form'
 
 export type MessageType = {
     id: number
     message: string
 };
-export type NewPostsTextType = string;
 export type DialogType = {
     id: number
     name: string
@@ -44,8 +44,9 @@ export type ProfileType = {
 }
 export type ProfilePageType = {
     posts: Array<PostType>
-    newPostsText: NewPostsTextType
+    newPostsText: string
     profile: ProfileType
+    status: string
 };
 export type DialogPageType = {
     dialogs: Array<DialogType>
@@ -59,6 +60,7 @@ export type RootStateType = {
     sidebar: SidebarType
     usersPage: usersPageType
     auth: AuthType
+    form: any
 };
 
 export type DispatchType = (action: ActionTypes) => void
@@ -83,6 +85,7 @@ let reducers = combineReducers({
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    form: formReducer
 });
 
 let store: Store = createStore(reducers, applyMiddleware(thunkMiddleware));
