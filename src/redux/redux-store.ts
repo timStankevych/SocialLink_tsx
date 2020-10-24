@@ -51,7 +51,6 @@ export type ProfilePageType = {
 export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    newMessageText: string
 };
 export type SidebarType = {};
 export type RootStateType = {

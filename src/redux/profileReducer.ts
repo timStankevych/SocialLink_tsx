@@ -2,13 +2,11 @@ import {PostType, ProfileType} from './redux-store';
 import {profileAPI, usersAPI} from '../api/api';
 
 export type ProfilePageActionTypes = ReturnType<typeof addPost>
-    | ReturnType<typeof updateNewPostText>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
 
 
 const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_STATUS = 'SET_STATUS';
 
@@ -18,7 +16,6 @@ let initialState = {
         {id: 0, message: 'Привет, как дела', likesCount: 10},
         {id: 1, message: 'Что ты такое', likesCount: 88},
     ],
-    newPostsText: '',
     profile: null,
     status: '',
 };
@@ -32,8 +29,6 @@ const profileReducer = (state = initialState, action: ProfilePageActionTypes) =>
                     likesCount: 0,
                 };
                 return {...state, posts: [...state.posts, newPost], newPostsText: ''};
-            case UPDATE_NEW_POST_TEXT:
-                return {...state, newPostsText: action.newText};
             case SET_USER_PROFILE:
                 return {...state, profile: action.profile};
             case SET_STATUS:
@@ -49,10 +44,6 @@ const profileReducer = (state = initialState, action: ProfilePageActionTypes) =>
 
 export const addPost = (newPostText: string) => {
     return {type: ADD_POST, newPostText} as const;
-};
-
-export const updateNewPostText = (newText: string) => {
-    return {type: UPDATE_NEW_POST_TEXT, newText} as const;
 };
 
 export const setUserProfile = (profile: ProfileType) => {
