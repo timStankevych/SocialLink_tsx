@@ -11,12 +11,12 @@ type PropsType = {
 
 let Profile = (props: PropsType) => {
 
-  return (
-    <div>
-      <ProfileInfo profile={props.profile} updateStatus={props.updateStatus} status={props.status}/>
-      <MyPostsContainer />
-    </div>
-  )
-}
+    return (
+        <div>
+            <ProfileInfo profile={props.profile} updateStatus={props.updateStatus} status={props.status}/>
+            <MyPostsContainer/>
+        </div>
+    );
+};
 
 export default Profile;

@@ -5,7 +5,7 @@ import sidebarReducer from './sidebarReducer';
 import usersReducer, {UsersPageActionTypes, usersPageType} from './usersReducer';
 import authReducer, {AuthReducerActionType, AuthType} from './authReducer';
 import thunkMiddleware from 'redux-thunk';
-import { reducer as formReducer } from 'redux-form'
+import {reducer as formReducer} from 'redux-form';
 
 export type MessageType = {
     id: number

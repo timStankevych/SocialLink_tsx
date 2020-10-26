@@ -27,7 +27,8 @@ const AddNewPostFormRedux = reduxForm({form: 'ProfileAddPostForm'})(AddNewPostFo
 
 const MyPosts: React.FC<PropsType> = (props) => {
 
-    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id} key={p.id}/>);
+    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount} id={p.id}
+                                                   key={p.id}/>);
 
     let onAddPost = (values: any) => {
         props.addPost(values.newPostText);
