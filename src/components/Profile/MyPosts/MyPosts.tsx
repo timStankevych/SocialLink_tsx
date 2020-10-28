@@ -22,7 +22,7 @@ const AddNewPostForm = (props: any) => {
                 validate={[required, maxLength10]}/>
             </div>
             <div>
-                <button>Add post</button>
+                <button>Add new post</button>
             </div>
         </form>
     );
