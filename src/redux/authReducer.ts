@@ -23,8 +23,7 @@ switch (action.type) {
     case SRT_USER_DATA:
         return{
             ...state,
-            ...action.data,
-            isAuth: true
+            ...action.payload
         }
     default:
         return state
@@ -32,9 +31,9 @@ switch (action.type) {
 
 };
 
-export const setAuthUserData = (id: number, login: string, email: string) => {
+export const setAuthUserData = (id: number | null, login: string | null, email: string | null, isAuth: boolean) => {
     return {
-        type: SRT_USER_DATA, data: {id, login, email}
+        type: SRT_USER_DATA, payload: {id, login, email, isAuth}
     } as const;
 };
 
@@ -43,9 +42,28 @@ export const getAuthUserData = () => (dispatch: any) => {
         .then(response => {
             if (response.data.resultCode === 0) {
                 let {id, login, email} = response.data.data;
-                dispatch(setAuthUserData(id, login, email));
+                dispatch(setAuthUserData(id, login, email, true));
             }
         });
 }
+
+export const login = (email: string, password: string, rememberMe: boolean) => (dispatch: any) => {
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthUserData())
+            }
+        })
+}
+
+export const logout = () => (dispatch: any) => {
+    authAPI.logout()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false))
+            }
+        })
+}
+
 
 export default authReducer;
