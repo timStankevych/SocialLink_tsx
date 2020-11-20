@@ -6,6 +6,7 @@ import usersReducer, {UsersPageActionTypes, usersPageType} from './usersReducer'
 import authReducer, {AuthReducerActionType, AuthType} from './authReducer';
 import thunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form';
+import appReducer, {AppReducerActionType, AppType} from './appReducer';
 
 export type MessageType = {
     id: number
@@ -60,6 +61,7 @@ export type RootStateType = {
     usersPage: usersPageType
     auth: AuthType
     form: any
+    app: AppType
 };
 
 export type DispatchType = (action: ActionTypes) => void
@@ -77,6 +79,7 @@ export type ActionTypes = ProfilePageActionTypes
     | DialogPageActionTypes
     | UsersPageActionTypes
     | AuthReducerActionType
+    | AppReducerActionType
 
 let reducers = combineReducers({
     profilePage: profileReducer,
@@ -84,7 +87,8 @@ let reducers = combineReducers({
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    form: formReducer
+    form: formReducer,
+    app: appReducer
 });
 
 let store: Store = createStore(reducers, applyMiddleware(thunkMiddleware));
